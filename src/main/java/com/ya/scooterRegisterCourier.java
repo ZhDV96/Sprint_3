@@ -1,4 +1,4 @@
-// импортируем RestAssured
+package com.ya;// импортируем RestAssured
 import io.restassured.RestAssured;
 // импортируем Response
 import io.restassured.response.Response;
@@ -47,3 +47,10 @@ public class scooterRegisterCourier {
             loginPass.add(courierLogin);
             loginPass.add(courierPassword);
         }
+
+        // возвращаем список
+        return loginPass;
+
+    }
+
+} 
