@@ -5,38 +5,39 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
+import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
+import org.apache.commons.lang3.RandomStringUtils;
 
-public class CourierClient extends ScooterRestClient {
+public class OrderClient extends ScooterRestClient {
 
-    private static final String COURIER_PATH = "api/v1/courier/";
+    private static final String BASE_URI = "/api/v1/orders";
 
-    public ValidatableResponse create(Courier courier) {
+    public ValidatableResponse create(Order order) {
         return given()
                 .spec(getBaseSpec())
-                .body(courier)
+                .body(order)
                 .when()
-                .post(COURIER_PATH)
+                .post(BASE_URI)
                 .then();
     }
 
-    public ValidatableResponse login(CourierCredentials courierCredentials) {
-        return given()
-                .spec(getBaseSpec())
-                .body(courierCredentials)
-                .when()
-                .post(COURIER_PATH + "login")
-                .then();
-    }
-
-    public ValidatableResponse delete(int orderTrack) {
+    public ValidatableResponse cancel(String orderTrack) {
         return given()
                 .spec(getBaseSpec())
                 .body(orderTrack)
                 .when()
-                .post(COURIER_PATH + ":id")
+                .post(BASE_URI + "cancel")
                 .then();
     }
 
+    public ValidatableResponse check(Order order) {
+        return given()
+                .spec(getBaseSpec())
+                .body(order)
+                .when()
+                .get(BASE_URI)
+                .then();
+    }
 
 }

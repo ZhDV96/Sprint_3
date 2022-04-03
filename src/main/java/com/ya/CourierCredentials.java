@@ -1,20 +1,28 @@
 package com.ya;
 
-public class CourierCredentials  extends {
+public class CourierCredentials  {
 
-    private final String login;
-    private final String password;
+    private String login;
+    private int password;
 
-    public CourierCredentials(String login, String password) {
+    public CourierCredentials(String login, int password) {
         this.login = login;
         this.password = password;
+    }
+
+    public CourierCredentials(int password) {
+        this.password = password;
+    }
+
+    public CourierCredentials(String login) {
+        this.login = login;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public String getPassword() {
+    public int getPassword() {
         return password;
     }
 }
