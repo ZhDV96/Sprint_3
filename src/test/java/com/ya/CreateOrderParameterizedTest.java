@@ -52,7 +52,7 @@ public class CreateOrderParameterizedTest {
         orderTrack = loginResponse.extract().path("track");
         System.out.println(orderTrack);
         assertThat("Can't create an order", statusCode, equalTo(201));
-        assertThat(orderTrack, notNullValue());
+        assertThat("Can't create an order or get an order track", orderTrack, notNullValue());
     }
 
 }

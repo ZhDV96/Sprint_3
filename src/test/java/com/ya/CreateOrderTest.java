@@ -16,15 +16,12 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import java.util.List;
 
-@RunWith(Parameterized.class)
 public class CreateOrderTest {
 
     Order order;
     OrderClient orderClient;
     OrderGenerator orderGenerator = new OrderGenerator();
     int orderTrack;
-
-
 
     @Before
     public void setUp() {
@@ -39,7 +36,7 @@ public class CreateOrderTest {
         orderTrack = loginResponse.extract().path("track");
         System.out.println(orderTrack);
         assertThat("Can't create an order", statusCode, equalTo(201));
-        assertThat(orderTrack, notNullValue());
+        assertThat("Can't create an order or get an order track", orderTrack, notNullValue());
     }
 
 }

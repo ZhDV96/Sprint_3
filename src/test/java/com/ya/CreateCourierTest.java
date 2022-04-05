@@ -29,8 +29,11 @@ public class CreateCourierTest {
         ValidatableResponse loginResponse = courierClient.login(new CourierCredentials(courier.getLogin(), courier.getPassword()));
         int statusCode = createResponse.extract().statusCode();
         courierId = loginResponse.extract().path("id");
+        Boolean responseMessage = createResponse.extract().path("ok");
         System.out.println(courierId);
+        System.out.println(responseMessage);
         assertThat("Can't create an courier", statusCode, equalTo(201));
+        assertThat("Response is incorrect", responseMessage, equalTo(true));
         assertThat("Can't login courier", courierId, is(not(0)));
 
     }
@@ -38,11 +41,14 @@ public class CreateCourierTest {
     @Test
     public void createCouriersCopy() {
 
-        ValidatableResponse createResponse = courierClient.create(courier);
-        ValidatableResponse loginResponse = courierClient.login(new CourierCredentials(courier.getLogin(), courier.getPassword()));
-        int statusCode = createResponse.extract().statusCode();
-        courierId = loginResponse.extract().path("id");
+        Courier courierCopy = new Courier(courier.getLogin(), courier.getPassword(), courier.getFirstName());
+        ValidatableResponse createCopyResponse = courierClient.create(courierCopy);
+        int statusCode = createCopyResponse.extract().statusCode();
+        String responseMessage = createCopyResponse.extract().path("message");
+        System.out.println(responseMessage);
+        assertThat("Response is incorrect", responseMessage, equalTo("Этот логин уже используется"));
         assertThat("Error: You can`t create a copy of courier", statusCode, equalTo(409));
+
 
     }
 
@@ -52,6 +58,9 @@ public class CreateCourierTest {
         courier = courierGenerator.getRandomWithoutLogin();
         ValidatableResponse createResponse = courierClient.create(courier);
         int statusCode = createResponse.extract().statusCode();
+        String responseMessage = createResponse.extract().path("message");
+        System.out.println(responseMessage);
+        assertThat("Response is incorrect", responseMessage, equalTo("Недостаточно данных для создания учетной записи"));
         assertThat("Error: You can`t create a courier without login", statusCode, equalTo(400));
 
     }
@@ -62,6 +71,9 @@ public class CreateCourierTest {
         courier = courierGenerator.getRandomWithoutPassword();
         ValidatableResponse createResponse = courierClient.create(courier);
         int statusCode = createResponse.extract().statusCode();
+        String responseMessage = createResponse.extract().path("message");
+        System.out.println(responseMessage);
+        assertThat("Response is incorrect", responseMessage, equalTo("Недостаточно данных для создания учетной записи"));
         assertThat("Error: You can`t create a courier without login", statusCode, equalTo(400));
 
     }

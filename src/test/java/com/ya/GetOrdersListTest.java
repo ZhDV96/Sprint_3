@@ -29,7 +29,7 @@ public class GetOrdersListTest {
         ordersList = loginResponse.extract().path("orders");
         System.out.println(ordersList);
         assertThat("Can't check a list of orders", statusCode, equalTo(200));
-        assertThat(ordersList, notNullValue());
+        assertThat("List of orders is empty", ordersList, notNullValue());
     }
 
 }

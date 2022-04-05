@@ -8,7 +8,6 @@ public class Courier {
     private int id;
 
     public Courier() {
-
     }
 
     public Courier(int id) {

@@ -5,6 +5,8 @@ import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
+import org.apache.commons.lang3.RandomStringUtils;
+
 import static io.restassured.RestAssured.given;
 
 public class CourierClient extends ScooterRestClient {
@@ -28,6 +30,7 @@ public class CourierClient extends ScooterRestClient {
                 .post(COURIER_PATH + "login")
                 .then();
     }
+
 
     public ValidatableResponse delete(int orderTrack) {
         return given()
