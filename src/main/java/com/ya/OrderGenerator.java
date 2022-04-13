@@ -1,14 +1,8 @@
 package com.ya;
-
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
-import static io.restassured.RestAssured.given;
 import org.apache.commons.lang3.RandomStringUtils;
 import java.time.*;
 import java.util.List;
+import io.qameta.allure.Step;
 
 public class OrderGenerator extends ScooterRestClient {
 
@@ -19,6 +13,7 @@ public class OrderGenerator extends ScooterRestClient {
     LocalDate lt = LocalDate.now(zid);
     private List<String> color;
 
+    @Step("Создание набора случайных данных для создания заказа")
     public Order getRandom(List<String> color) {
         String firstName = RandomStringUtils.randomAlphabetic(10);
         String lastName = RandomStringUtils.randomAlphabetic(10);
@@ -33,6 +28,7 @@ public class OrderGenerator extends ScooterRestClient {
         return new Order(firstName, lastName, address, metroStation, phone, rentTime, deliveryDate, comment, color);
     }
 
+    @Step("Создание набора случайных данных для создания заказа")
     public Order getRandom() {
         String firstName = RandomStringUtils.randomAlphabetic(10);
         String lastName = RandomStringUtils.randomAlphabetic(10);

@@ -1,11 +1,6 @@
 package com.ya;
-
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
-import org.apache.commons.lang3.RandomStringUtils;
+import io.qameta.allure.Step;
 
 import static io.restassured.RestAssured.given;
 
@@ -13,6 +8,7 @@ public class CourierClient extends ScooterRestClient {
 
     private static final String COURIER_PATH = "api/v1/courier/";
 
+    @Step("Создание курьера")
     public ValidatableResponse create(Courier courier) {
         return given()
                 .spec(getBaseSpec())
@@ -22,6 +18,7 @@ public class CourierClient extends ScooterRestClient {
                 .then();
     }
 
+    @Step("Логин курьера")
     public ValidatableResponse login(CourierCredentials courierCredentials) {
         return given()
                 .spec(getBaseSpec())
@@ -31,7 +28,7 @@ public class CourierClient extends ScooterRestClient {
                 .then();
     }
 
-
+    @Step("Удаление курьера")
     public ValidatableResponse delete(int orderTrack) {
         return given()
                 .spec(getBaseSpec())

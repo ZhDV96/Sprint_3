@@ -1,18 +1,13 @@
 package com.ya;
-
-import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
+import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
-import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
-import org.apache.commons.lang3.RandomStringUtils;
 
 public class OrderClient extends ScooterRestClient {
 
     private static final String BASE_URI = "/api/v1/orders";
 
+    @Step("Создание заказа")
     public ValidatableResponse create(Order order) {
         return given()
                 .spec(getBaseSpec())
@@ -22,6 +17,7 @@ public class OrderClient extends ScooterRestClient {
                 .then();
     }
 
+    @Step("Отмена заказа")
     public ValidatableResponse cancel(String orderTrack) {
         return given()
                 .spec(getBaseSpec())
@@ -31,6 +27,7 @@ public class OrderClient extends ScooterRestClient {
                 .then();
     }
 
+    @Step("Получение списка заказов")
     public ValidatableResponse check(Order order) {
         return given()
                 .spec(getBaseSpec())

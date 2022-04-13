@@ -2,10 +2,10 @@ package com.ya;
 
 public class Courier {
 
-    private String login;
-    private int password;
-    private String firstName;
-    private int id;
+    public String login;
+    public String password;
+    public String firstName;
+    public int id;
 
     public Courier() {
     }
@@ -14,26 +14,18 @@ public class Courier {
         this.id = id;
     }
 
-    public Courier(String login, int password, String firstName) {
+    public Courier(String login, String password, String firstName) {
         this.login = login;
         this.password = password;
         this.firstName = firstName;
     }
 
-    public Courier(String login, int password) {
+    public Courier(String login, String password) {
         this.login = login;
         this.password = password;
     }
 
-    public Courier(int password, String firstName) {
-        this.password = password;
-        this.firstName = firstName;
-    }
 
-    public Courier(String login, String firstName) {
-        this.login = login;
-        this.firstName = firstName;
-    }
     public String getLogin() {
         return login;
     }
@@ -42,11 +34,11 @@ public class Courier {
         this.login = login;
     }
 
-    public int getPassword() {
+    public String getPassword() {
         return password;
     }
 
-    public void setPassword(int password) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
