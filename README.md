@@ -5,8 +5,7 @@
 
 ## Перед началом работы
 Необходимо, чтобы были уставновлены:  
-•	IntelliJ IDEA + Maven  
-•	Docker desktop   
+•	IntelliJ IDEA + Maven     
 •	Git Bash  
 ### Переключитесь на ветку develop.
 1.	Перейдите в репозиторий с заготовкой кода: https://github.com/ZhDV96/Sprint_3
